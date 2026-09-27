@@ -1,0 +1,108 @@
+<footer class="footer-yautan">
+  <div class="container">
+    <div class="row gy-5">
+      <!-- MARCA -->
+      <div class="col-lg-4">
+        <div class="footer-logo d-flex align-items-center gap-2 mb-3">
+          <div class="footer-logo-icon">🥑</div>
+
+          <h3 class="footer-brand mb-0">Paltas Yaután</h3>
+        </div>
+
+        <p class="footer-text">
+          Paltas frescas seleccionadas directamente del campo peruano hacia tu
+          hogar. Calidad premium y envío seguro.
+        </p>
+      </div>
+
+      <!-- ENLACES -->
+      <div class="col-lg-4">
+        <h5 class="footer-title">Navegación</h5>
+
+        <ul class="footer-links">
+          <li>
+            <a href="/">
+              <i class="bi bi-chevron-right"></i>
+              Inicio
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'lista_productos' %}">
+              <i class="bi bi-chevron-right"></i>
+              Productos
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'nosotros' %}">
+              <i class="bi bi-chevron-right"></i>
+              Nosotros
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'contacto' %}">
+              <i class="bi bi-chevron-right"></i>
+              Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CONTACTO -->
+      <div class="col-lg-4">
+        <h5 class="footer-title">Contacto</h5>
+
+        <div class="footer-contact-group">
+          <p class="footer-contact">
+            <i class="bi bi-geo-alt-fill"></i>
+
+            Yaután - Ancash
+          </p>
+
+          <p class="footer-contact">
+            <i class="bi bi-telephone-fill"></i>
+
+            +51 933470244
+          </p>
+
+          <p class="footer-contact">
+            <i class="bi bi-envelope-fill"></i>
+
+            ventas@paltasyautan.com
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REDES -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61587214982548">
+        <i class="bi bi-facebook"></i>
+      </a>
+
+      <a href="#">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <a href="#">
+        <i class="bi bi-tiktok"></i>
+      </a>
+
+      <a
+        href="https://wa.me/51999999999?text=Hola,%20quiero%20comprar%20{{ producto.nombre }}"
+      >
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- LINEA -->
+    <hr class="footer-line" />
+
+    <!-- COPY -->
+    <div class="footer-copy">
+      © 2026 Paltas Yaután | Todos los derechos reservados
+    </div>
+  </div>
+</footer>

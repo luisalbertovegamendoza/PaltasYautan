@@ -1,0 +1,350 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- TEXTO -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <h1 class="display-4 fw-bold mb-4">
+
+                    🥑 Paltas frescas<br>
+                    <span class="text-success"></span>
+                    del campo peruano
+                </span>
+                </h1>
+
+                <p class="lead text-muted mb-4">
+
+                    Cultivadas en Yaután con calidad premium,
+                    frescas y listas para tu mesa con entrega rápida.
+
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap">
+
+                    <a href="{% url 'lista_productos' %}" class="btn btn-success btn-lg px-4">
+
+                        Ver Productos
+
+                    </a>
+
+                    <a href="{% url 'contacto' %}" class="btn btn-outline-success btn-lg px-4">
+
+                        Contactar
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- IMAGEN -->
+            <div class="col-lg-6 text-center">
+
+                <img src="{% static 'img/hero2.jpg' %}"
+                     class="img-fluid hero-img"
+                     alt="Paltas frescas">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= BENEFICIOS ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">¿Por qué elegirnos?</h2>
+
+            <p class="text-muted">Calidad, frescura y confianza directa del campo</p>
+
+        </div>
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4">
+
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+
+                    <div style="font-size:40px;">🌱</div>
+
+                    <h5 class="mt-3 fw-bold">Cultivo Natural</h5>
+
+                    <p class="text-muted">
+                        Paltas seleccionadas directamente del campo sin procesos artificiales.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+
+                    <div style="font-size:40px;">🚚</div>
+
+                    <h5 class="mt-3 fw-bold">Delivery Rápido</h5>
+
+                    <p class="text-muted">
+                        Entrega rápida y segura hasta la puerta de tu casa.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+
+                    <div style="font-size:40px;">🥑</div>
+
+                    <h5 class="mt-3 fw-bold">Calidad Premium</h5>
+
+                    <p class="text-muted">
+                        Sabor, textura y frescura garantizada en cada palta.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PRODUCTOS ================= -->
+
+<section class="py-5" id="productos">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">Nuestros Productos</h2>
+            <p class="text-muted">Seleccionados cuidadosamente para ti</p>
+
+        </div>
+
+        <div class="row g-4">
+
+    {% for producto in productos %}
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm h-100 producto-home-card">
+
+                <!-- IMAGEN PRINCIPAL -->
+                {% if producto.imagen %}
+
+                    <img src="{{ producto.imagen.url }}"
+                         class="producto-img"
+                         alt="{{ producto.nombre }}">
+
+                {% else %}
+
+                    <img src="{% static 'img/no-image.jpg' %}"
+                         class="producto-img"
+                         alt="Sin imagen">
+
+                {% endif %}
+
+
+                <!-- INFORMACIÓN -->
+                <div class="card-body text-center">
+
+                    <h5 class="fw-bold">
+                        {{ producto.nombre }}
+                    </h5>
+
+                    <p class="text-muted">
+                        {{ producto.descripcion|truncatechars:100 }}
+                    </p>
+
+
+                    <!-- PRECIO -->
+                    {% if producto.precio_oferta %}
+
+                        <p>
+
+                            <del class="text-muted">
+                                S/ {{ producto.precio }}
+                            </del>
+
+                            <strong class="text-success ms-2">
+                                S/ {{ producto.precio_oferta }}
+                            </strong>
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="fw-bold">
+                            S/ {{ producto.precio }}
+                        </p>
+
+                    {% endif %}
+
+
+                    <!-- WHATSAPP -->
+                    <a
+                        href="https://wa.me/51999999999?text=Hola,%20quiero%20comprar%20{{ producto.nombre }}"
+                        target="_blank"
+                        class="btn btn-success w-100"
+                    >
+
+                        <i class="bi bi-whatsapp"></i>
+
+                        Pedido por WhatsApp
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="col-12 text-center">
+
+            <p class="text-muted">
+                No hay productos disponibles.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= NOSOTROS ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <img src="{% static 'img/hero1.jpg' %}"
+                     class="img-fluid rounded-4 shadow"
+                     alt="Campo">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <h2 class="fw-bold mb-3">
+
+                    Directamente del campo peruano
+
+                </h2>
+
+                <p class="text-muted">
+
+                    En Paltas Yaután trabajamos con pasión para ofrecer productos frescos y de excelente calidad.
+
+                </p>
+
+                <p class="text-muted">
+
+                    Nuestro compromiso es llevar lo mejor del campo peruano directamente a tu hogar.
+
+                </p>
+
+                <a href="{% url 'nosotros' %}" class="btn btn-success px-4 mt-2">
+
+                    Conocer Más
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ================= CONTACTO ================= -->
+
+<section class="py-5" id="contacto">
+
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-3">
+
+            Recibe promociones y novedades
+
+        </h2>
+
+        <p class="text-muted mb-4">
+
+            Suscríbete y recibe ofertas exclusivas
+
+        </p>
+
+        <form method="POST"
+      action="{% url 'suscribirse' %}"
+      class="row justify-content-center g-2">
+
+            {% csrf_token %}
+            <div class="col-md-4">
+
+                <input type="email"
+                       name="correo"
+                       class="form-control form-control-lg"
+                       placeholder="Tu correo electrónico"
+                       required>
+
+            </div>
+
+            <div class="col-auto">
+
+                <button class="btn btn-success btn-lg px-4">
+
+                    Suscribirme
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

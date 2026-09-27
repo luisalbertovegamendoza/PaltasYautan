@@ -1,0 +1,93 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Paltas Yaután | Paltas Premium del Perú
+    </title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{% static 'css/estilo.css' %}">
+
+</head>
+
+<body>
+
+    <!-- =======================================
+         FONDO DECORATIVO
+    ======================================== -->
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- =======================================
+         HEADER
+    ======================================== -->
+
+    {% include 'common/header.html' %}
+
+    <!-- =======================================
+         CONTENIDO
+    ======================================== -->
+
+    <main class="main-content">
+
+        <div class="container py-4">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </main>
+
+    <!-- =======================================
+         BOTON WHATSAPP
+    ======================================== -->
+
+    <a href="https://wa.me/51933470244"
+       class="whatsapp-float"
+       target="_blank">
+
+        <i class="bi bi-whatsapp"></i>
+
+    </a>
+
+    <!-- =======================================
+         FOOTER
+    ======================================== -->
+
+    {% include 'common/footer.html' %}
+
+    <!-- =======================================
+         BOOTSTRAP JS
+    ======================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+

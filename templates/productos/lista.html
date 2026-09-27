@@ -1,0 +1,170 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- ================= HERO PRODUCTOS ================= -->
+
+<section class="productos-hero text-center">
+  <div class="container">
+    <span class="mini-badge"> 🥑 Catálogo Premium </span>
+
+    <h1 class="productos-titulo">Nuestras Paltas Frescas</h1>
+
+    <p class="productos-subtitulo">
+      Productos seleccionados directamente del campo peruano con calidad
+      garantizada.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRODUCTOS ================= -->
+
+<section class="pb-5">
+  <div class="productos-contenedor">
+    {% for producto in productos %}
+
+    <div class="producto-card">
+      <!-- IMAGEN / CARRUSEL -->
+      <div class="producto-img-box">
+        {% if producto.precio_oferta %}
+
+        <div class="badge-oferta">Oferta</div>
+
+        {% endif %} {% if producto.imagenes.all %}
+
+        <div
+          id="carouselProducto{{ producto.id }}"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <!-- FOTOS -->
+
+          <div class="carousel-inner">
+            {% for imagen in producto.imagenes.all %}
+
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img
+                src="{{ imagen.imagen.url }}"
+                alt="{{ producto.nombre }}"
+                class="producto-imagen"
+              />
+            </div>
+
+            {% endfor %}
+          </div>
+
+          <!-- BOTÓN ANTERIOR -->
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselProducto{{ producto.id }}"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+
+          <!-- BOTÓN SIGUIENTE -->
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselProducto{{ producto.id }}"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+
+        {% elif producto.imagen %}
+
+        <!-- IMAGEN PRINCIPAL ANTIGUA -->
+
+        <img
+          src="{{ producto.imagen.url }}"
+          alt="{{ producto.nombre }}"
+          class="producto-imagen"
+        />
+
+        {% else %}
+
+        <!-- SIN IMAGEN -->
+
+        <img
+          src="{% static 'img/no-image.jpg' %}"
+          alt="Sin imagen"
+          class="producto-imagen"
+        />
+
+        {% endif %}
+      </div>
+
+      <!-- CONTENIDO -->
+      <div class="producto-contenido">
+        <h2 class="producto-titulo">{{ producto.nombre }}</h2>
+
+        <p class="descripcion">{{ producto.descripcion|truncatechars:110 }}</p>
+
+        <!-- PRECIOS -->
+        <div class="precios">
+          {% if producto.precio_oferta %}
+
+          <span class="precio-original"> S/ {{ producto.precio }} </span>
+
+          <span class="precio-oferta"> S/ {{ producto.precio_oferta }} </span>
+
+          {% else %}
+
+          <span class="precio"> S/ {{ producto.precio }} </span>
+
+          {% endif %}
+        </div>
+
+        <!-- STOCK -->
+        {% if producto.stock > 0 %}
+
+        <p class="stock disponible">
+          <i class="bi bi-check-circle-fill"></i>
+
+          Disponible ({{ producto.stock }})
+        </p>
+
+        {% else %}
+
+        <p class="stock agotado">
+          <i class="bi bi-x-circle-fill"></i>
+
+          Agotado
+        </p>
+
+        {% endif %}
+
+        <!-- BOTON -->
+        <a
+          href="https://wa.me/51999999999?text=Hola,%20quiero%20comprar%20{{ producto.nombre }}"
+          target="_blank"
+          class="boton-producto"
+        >
+          <i class="bi bi-whatsapp"></i>
+
+          Pedido por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    {% empty %}
+
+    <!-- EMPTY -->
+    <div class="sin-productos">
+      <div class="empty-box">
+        <div class="empty-icon">🥑</div>
+
+        <h3>No hay productos disponibles</h3>
+
+        <p>Pronto agregaremos nuevos productos frescos.</p>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-yautan sticky-top">
+  <div class="container">
+    <!-- LOGO -->
+    <a
+      class="navbar-brand brand-yautan d-flex align-items-center gap-2"
+      href="/"
+    >
+      <span class="logo-icon"> 🥑 </span>
+
+      <span> Paltas Yaután </span>
+    </a>
+
+    <!-- BOTON MOBILE -->
+    <button
+      class="navbar-toggler border-0 shadow-none"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menu"
+    >
+      <i class="bi bi-list fs-1 text-success"></i>
+    </button>
+
+    <!-- MENU -->
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">
+            <i class="bi bi-house-door me-1"></i>
+            Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'lista_productos' %}">
+            <i class="bi bi-grid me-1"></i>
+            Productos
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'nosotros' %}">
+            <i class="bi bi-people me-1"></i>
+            Nosotros
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacto' %}">
+            <i class="bi bi-envelope me-1"></i>
+            Contacto
+          </a>
+        </li>
+
+        <!-- BOTON -->
+        <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+          <a
+            href="https://wa.me/51999999999?text=Hola,%20quiero%20comprar%20{{ producto.nombre }}"
+            class="btn btn-yautan"
+          >
+            <i class="bi bi-cart-fill me-2"></i>
+            Comprar por WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```

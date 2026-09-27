@@ -1,0 +1,218 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .contacto-contenedor {
+        max-width: 750px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .contacto-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+    }
+
+    .contacto-titulo {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    .contacto-descripcion {
+        text-align: center;
+        color: #666;
+        margin-bottom: 35px;
+        font-size: 16px;
+    }
+
+    .campo {
+        margin-bottom: 22px;
+    }
+
+    .campo label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .campo input,
+    .campo textarea {
+        width: 100%;
+        padding: 13px 15px;
+        border: 1px solid #d5d5d5;
+        border-radius: 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: 0.3s;
+        font-family: inherit;
+    }
+
+    .campo input:focus,
+    .campo textarea:focus {
+        outline: none;
+        border-color: #4caf50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+    }
+
+    .campo textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    .boton-enviar {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .boton-enviar:hover {
+        transform: translateY(-2px);
+    }
+
+    .mensaje-exito {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 14px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .errores {
+        color: #c62828;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 600px) {
+
+        .contacto-contenedor {
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .contacto-card {
+            padding: 25px;
+        }
+
+        .contacto-titulo {
+            font-size: 28px;
+        }
+    }
+
+</style>
+
+
+<div class="contacto-contenedor">
+
+    <div class="contacto-card">
+
+        <h1 class="contacto-titulo">
+            Contáctanos
+        </h1>
+
+        <p class="contacto-descripcion">
+            ¿Tienes alguna consulta? Escríbenos y estaremos encantados de ayudarte.
+        </p>
+
+
+        {% if enviado %}
+
+            <div class="mensaje-exito">
+                ✓ Mensaje enviado correctamente.
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="campo">
+
+                {{ form.nombre.label_tag }}
+
+                {{ form.nombre }}
+
+                {% if form.nombre.errors %}
+                    <div class="errores">
+                        {{ form.nombre.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <div class="campo">
+
+                {{ form.correo.label_tag }}
+
+                {{ form.correo }}
+
+                {% if form.correo.errors %}
+                    <div class="errores">
+                        {{ form.correo.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <div class="campo">
+
+                {{ form.telefono.label_tag }}
+
+                {{ form.telefono }}
+
+                {% if form.telefono.errors %}
+                    <div class="errores">
+                        {{ form.telefono.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <div class="campo">
+
+                {{ form.mensaje.label_tag }}
+
+                {{ form.mensaje }}
+
+                {% if form.mensaje.errors %}
+                    <div class="errores">
+                        {{ form.mensaje.errors }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <button type="submit" class="boton-enviar">
+                Enviar Mensaje
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+```
